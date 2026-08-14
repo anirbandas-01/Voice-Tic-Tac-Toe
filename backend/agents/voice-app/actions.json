@@ -1,0 +1,112 @@
+[
+  {
+    "name": "show_tic_tac_toe",
+    "direction": "agent_to_app",
+    "description": "Triggered when the user requests to play tic-tac-toe. Displays the interactive game board on screen.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "userSymbol": {
+          "type": "string",
+          "enum": ["X", "O"],
+          "default": "X",
+          "description": "Symbol assigned to the user."
+        },
+        "firstTurn": {
+          "type": "string",
+          "enum": ["user", "agent"],
+          "default": "user",
+          "description": "Indicates who moves first."
+        }
+      }
+    }
+  },
+  {
+    "name": "place_mark",
+    "direction": "agent_to_app",
+    "description": "Places the agent's mark on the tic-tac-toe board at the specified row and column.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "row": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Zero-indexed row number (0 = top, 1 = middle, 2 = bottom)."
+        },
+        "col": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Zero-indexed column number (0 = left, 1 = center, 2 = right)."
+        }
+      },
+      "required": ["row", "col"]
+    }
+  },
+  {
+    "name": "user_move",
+    "direction": "agent_to_app",
+    "description": "Triggered when the user dictates their move by voice (e.g. 'Center', 'Top Left'). Places the user's mark.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "row": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Zero-indexed row number."
+        },
+        "col": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Zero-indexed column number."
+        }
+      },
+      "required": ["row", "col"]
+    }
+  },
+  {
+    "name": "clear_ui",
+    "direction": "agent_to_app",
+    "description": "Hides and resets the interactive tic-tac-toe game UI.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "user_placed_mark",
+    "direction": "app_to_agent",
+    "description": "Emitted by the frontend whenever the user clicks a cell on the board.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "position": { "type": "integer", "description": "Flat index 0-8." },
+        "row": { "type": "integer" },
+        "col": { "type": "integer" },
+        "mark": { "type": "string" },
+        "board": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string" },
+        "turn": { "type": "string" }
+      }
+    }
+  },
+  {
+    "name": "board_sync",
+    "direction": "app_to_agent",
+    "description": "Authoritative state synchronization event sent from app to agent after every board modification.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "board": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string" },
+        "turn": { "type": "string" },
+        "moveCount": { "type": "integer" },
+        "userSymbol": { "type": "string" },
+        "agentSymbol": { "type": "string" }
+      }
+    }
+  }
+]

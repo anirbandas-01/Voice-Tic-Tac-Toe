@@ -1,0 +1,22 @@
+# Environment variables & secrets (NEVER COMMIT)
+.env
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python cache & build files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Temporary generated web files
+index.html
+two_player.html
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
