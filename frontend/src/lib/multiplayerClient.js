@@ -1,5 +1,5 @@
-const API_BASE = 'http://localhost:8000'
-const WS_BASE = 'ws://localhost:8000'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000'
+const WS_BASE = import.meta.env.VITE_WS_BASE || 'ws://localhost:8000'
 
 export async function createRoom() {
   const response = await fetch(`${API_BASE}/api/rooms`, { method: 'POST' })
