@@ -4,6 +4,8 @@ import ModeSwitcher from './components/ModeSwitcher'
 import VoiceLegend from './components/VoiceLegend'
 import RoomLobby from './components/RoomLobby'
 import MultiplayerBoard from './components/MultiplayerBoard'
+import InstallButton from './components/InstallButton'
+
 
 function App() {
   const [mode, setMode] = useState('ai')
@@ -24,7 +26,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center gap-6 py-10">
-      <h1 className="text-2xl font-bold text-white">Voice Tic-Tac-Toe</h1>
+      <div className="flex items-center gap-4">
+        <h1 className="text-2xl font-bold text-white">Voice Tic-Tac-Toe</h1>
+        <InstallButton />
+      </div>
       <ModeSwitcher mode={mode} onChange={handleModeChange} />
 
       {mode === 'online' ? (
