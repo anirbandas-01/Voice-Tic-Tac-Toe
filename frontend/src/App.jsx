@@ -5,6 +5,7 @@ import VoiceLegend from './components/VoiceLegend'
 import RoomLobby from './components/RoomLobby'
 import MultiplayerBoard from './components/MultiplayerBoard'
 import InstallButton from './components/InstallButton'
+import { speak } from './lib/tts'
 
 
 function App() {
@@ -14,7 +15,13 @@ function App() {
   function handleModeChange(newMode) {
     setMode(newMode)
     setActiveRoomCode(null) // leave any active room when switching modes
+    if (newMode === 'ai') {
+      speak('Human versus AI mode activated.')
+    } else if (newMode === 'human') {
+      speak('Two player mode activated.')
+    }
   }
+
 
   function handleJoinRoom(code) {
     setActiveRoomCode(code)
